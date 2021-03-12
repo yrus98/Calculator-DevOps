@@ -26,7 +26,7 @@ public class CalculatorTest {
         assertTrue("Factorial of Negative number", Double.isNaN(calc.fact(-5)));
     }
 
-    @Test
+    @Test()
     public  void logeTest(){
         assertEquals("Natural Log of Integer", 1.609437, calc.loge(5), DELTA);
         assertEquals("Natural Log of Float", 1.252762, calc.loge(3.5), DELTA);

@@ -16,7 +16,7 @@ public class Calculator {
         double num1, num2;
         System.out.println("Calculator DevOps Mini Project");
         do {
-            System.out.print("\n-----MENU-----\n1. Squareroot\n2. Factorial\n3. Natural Log\n4. Power (a^b)\n" +
+            System.out.print("\n-----MENU-----\n1. Square Root\n2. Factorial\n3. Natural Log\n4. Power (a^b)\n" +
                     "Press any other key to exit\nEnter your choice: ");
             int choice;
             try {
@@ -87,12 +87,10 @@ public class Calculator {
     public double sqrt(double num1) {
         logger.info("[SQRT] - " + num1);
         double ans = -1;
-        try {
-            ans = Math.sqrt(num1);
-            logger.info("[RESULT - SQRT] - " + ans);
-        }catch (Exception e){
+        ans = Math.sqrt(num1);
+        logger.info("[RESULT - SQRT] - " + ans);
+        if(num1 < 0)
             logger.error("[EXCEPTION - SQRT] - Invalid Input");
-        }
         return ans;
     }
 
@@ -119,12 +117,10 @@ public class Calculator {
     public double loge(double num1) {
         logger.info("[LOG_E] - " + num1);
         double ans = 0;
-        try {
-            ans = Math.log(num1);
-            logger.info("[RESULT - LOG_E] - " + ans);
-        }catch(Exception e){
+        ans = Math.log(num1);
+        logger.info("[RESULT - LOG_E] - " + ans);
+        if(num1 <= 0)
             logger.error("[EXCEPTION - LOG_E] - Invalid Input");
-        }
         return ans;
     }
 
