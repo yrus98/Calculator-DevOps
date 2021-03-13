@@ -1,5 +1,5 @@
 ---
-- name: Pull the docker image of yrus98/calculator-devops
+- name: Pull the docker image of yrus98/calculator-devops and run the container
   hosts: all
   tasks:
    - name: Pull yrus98/calculator-devops
