@@ -1,0 +1,15 @@
+---
+- name: Pull the docker image of yrus98/calculator-devops
+  hosts: all
+  tasks:
+   - name: Pull yrus98/calculator-devops
+     docker_image:
+       name: yrus98/calculator-devops
+       source: pull
+   - name: Run image as container
+     docker_container:
+       name: calc_devops
+       image: yrus98/calculator-devops
+       state: started
+       tty: true
+       detach: true
