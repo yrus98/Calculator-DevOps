@@ -12,4 +12,6 @@
        image: yrus98/calculator-devops
        state: started
        tty: true
+       interactive: true
        detach: true
+ 
