@@ -1,0 +1,45 @@
+pipeline {
+    environment{
+        registryCredential = 'docker_rushi'
+        sshCred = 'ssh_private_key'
+        dockerImage=''
+    }
+    agent any
+
+    stages {
+        stage('Step 1 Clone') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/yrus98/Calculator-DevOps.git'
+
+            }
+        }
+        stage('Step 2 Build jar and Test') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Step 3 Build Docker image') {
+            steps {
+                script{
+                    dockerImage = docker.build 'yrus98/calculator-devops'
+                }
+            }
+        }
+        stage('Step 4 Push image to dockerhub'){
+            steps{
+                script{
+                    docker.withRegistry('https://registry.hub.docker.com', registryCredential){
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Step 5 Deploy with Ansible'){
+            steps{
+                ansiblePlaybook becomeUser: null, colorized: true,
+                 installation: 'Ansible', inventory: 'inventory', playbook: 'playbook.yml', sudoUser: null, hostKeyChecking: false
+            }
+        }
+    }
+}
