@@ -1,7 +1,6 @@
 pipeline {
     environment{
         registryCredential = 'docker_rushi'
-        sshCred = 'ssh_private_key'
         dockerImage=''
     }
     agent any
